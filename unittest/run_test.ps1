@@ -1,9 +1,6 @@
 # このps1ファイルのあるフォルダのパスを取得する
 $root_dir = Split-Path -Parent $MyInvocation.MyCommand.Definition
-
-
-# スクリプトのフォルダへ事前に移動しておく。python起動時、フォルダ内にあるpythonをインポートできるようになります。
-cd $root_dir/scripts
+$env:PYTHONPATH = "$root_dir\scripts;$env:PYTHONPATH"
 
 # mayaのインタープレターを使用してみましょう。
 # -m unittest はPythonの標準ライブラリに含まれる unittest モジュールをスクリプトモードで実行することを意味します。

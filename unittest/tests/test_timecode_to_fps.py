@@ -1,5 +1,6 @@
-from timecode_to_fps import timecode_to_fps
 import unittest
+
+from timecode_to_fps import timecode_to_fps
 
 
 class TestTimeCodeToFps(unittest.TestCase):
