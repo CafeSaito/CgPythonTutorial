@@ -7,7 +7,12 @@ class TestVisualizeIntersectionWithPfx(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        standalone.initialize()
+
+        # cmdsコマンドを試しに実行し、エラーするようなら初期化する
+        try:
+            cmds.ls()
+        except AttributeError as e:
+            standalone.initialize()
 
     def setUp(self):
         # テストごとにシーンをクリア
