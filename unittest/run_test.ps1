@@ -8,3 +8,4 @@ $env:PYTHONPATH = "$root_dir\scripts;$env:PYTHONPATH"
 # -s は--start-directory の略で、テストの検索を開始するディレクトリを指定します。
 # -p は--pattern の略で、テストファイルのパターンを指定します。
 & "C:\Program Files\Autodesk\Maya2024\bin\mayapy.exe" -m unittest discover -s $root_dir\tests -p "test_*.py"
+Pause

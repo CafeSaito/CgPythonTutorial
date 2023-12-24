@@ -9,3 +9,4 @@ $env:PYTHONPATH = $scripts_dir
 #-m unittest discoverはPythonの標準ライブラリであるunittestを使ってテストを発見し実行することを指示します。
 #-sオプションはテストを検索するディレクトリを指定
 & "C:\Program Files\Autodesk\Maya2024\bin\mayapy.exe" -m unittest discover -s $test_dir
+Pause
