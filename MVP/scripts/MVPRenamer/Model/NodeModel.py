@@ -12,14 +12,15 @@ class NodeModel:
     }
 
     def rename(self, new_name):
+        # 選択中のものを一覧で取得する
         selections = cmds.ls(sl=True)
 
-        # 選択されていない場合はエラーする
+        # 選択されていない場合はエラーとし、その旨を返しつつ、以降の処理を実行できないようにします。
         if not selections:
             message = "Please Select node"
             return message
 
-        # 新しい名前が空文字の場合はエラーする
+        # 新しい名前が空文字の場合はエラーとし、その旨を返しつつ、以降の処理を実行できないようにします。
         if not new_name:
             message = "Node name cannot be empty"
             return message
@@ -29,7 +30,7 @@ class NodeModel:
             message = "Node name is not changed"
             return message
 
-        # 英数字とアンダースコア以外はエラーする
+        # 英数字とアンダースコア以外はエラーとし、その旨を返しつつ、以降の処理を実行できないようにします。
         valid_name_pattern = re.compile(r'^\w+$')
         if not valid_name_pattern.match(new_name):
             message = "Node name must be alphanumeric and underscore"
@@ -40,7 +41,7 @@ class NodeModel:
             message = "Node name already exists"
             return message
 
-        # shapeノードを取得してみる
+        # ノードタイプを取得する。シェイプがある場合には、そのタイプを取得する。
         shapes = cmds.listRelatives(selections[0], shapes=True)
         if shapes:
             node_type = cmds.nodeType(shapes[0])
@@ -51,5 +52,6 @@ class NodeModel:
         if node_type in self.suffix_patterns:
             new_name += "_" + self.suffix_patterns[node_type]
 
+        # エラーチェックを全て通過したならば、リネームを実行する
         cmds.rename(selections[0], new_name)
         print("Renamed: " + selections[0] + " -> " + new_name)
